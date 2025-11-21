@@ -1,0 +1,3 @@
+fee_type,amount,currency,applicable_to
+tuition,5000,USD,per_semester
+registration_fee,50,USD,one_time

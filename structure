@@ -1,0 +1,40 @@
+campus-admin-agent/
+│
+├── agents/
+│   ├── main_orchestrator.py
+│   ├── registration_agent.py
+│   ├── fee_billing_agent.py
+│   ├── advising_agent.py
+│   ├── forms_agent.py
+│   ├── search_info_agent.py
+│   ├── reminders_agent.py
+│   └── policy_agent.py
+├── tools/
+│   ├── search_tool.py
+│   ├── pdf_loader.py
+│   ├── db_tool.py
+│   └── code_executor.py
+├── memory/
+│   ├── session_state.py
+│   ├── memory_bank.py
+│   └── context_compactor.py
+├── data/
+│   ├── course_catalog.csv
+│   ├── fee_structure.csv
+│   └── policies/
+├── utils/
+│   ├── validator.py
+│   ├── scheduler.py
+│   └── parsers.py
+│
+├── routes/
+│   ├── course_catalog.csv
+│   ├── fee_structure.csv
+│   └── policies
+│
+├── diagrams/
+│   ├── architecture.png
+│   ├── workflow_course.png
+│   └── memory_flow.png
+│
+└── README.md
