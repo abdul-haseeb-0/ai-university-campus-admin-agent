@@ -1,0 +1,37 @@
+{
+  "academic_programs": {
+    "undergraduate": ["BSc Computer Science", "BSc Artificial Intelligence", "BSc Data Science"],
+    "graduate": ["MSc AI", "MSc Data Science", "PhD Computer Science"]
+  },
+  "courses": [
+    {
+      "code": "CS101",
+      "name": "Introduction to Programming",
+      "description": "Fundamentals of programming using Python",
+      "credits": 3,
+      "prerequisites": [],
+      "department": "Computer Science"
+    },
+    {
+      "code": "AI201",
+      "name": "Machine Learning Fundamentals",
+      "description": "Introduction to machine learning algorithms and techniques",
+      "credits": 4,
+      "prerequisites": ["CS101", "MATH101"],
+      "department": "Artificial Intelligence"
+    },
+    {
+      "code": "DS301",
+      "name": "Data Analysis and Visualization",
+      "description": "Advanced data analysis techniques and visualization methods",
+      "credits": 4,
+      "prerequisites": ["AI201", "STAT201"],
+      "department": "Data Science"
+    }
+  ],
+  "academic_calendar": {
+    "fall_semester": "September - December",
+    "spring_semester": "January - April", 
+    "summer_semester": "May - August"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "university_name": "AI University",
+  "campus_locations": [
+    {
+      "name": "Main Campus",
+      "address": "123 University Drive, Tech City, TC 12345",
+      "phone": "(555) 123-4567",
+      "email": "info@aiuniversity.edu"
+    }
+  ],
+  "departments": [
+    {
+      "name": "Computer Science",
+      "head": "Dr. Sarah Chen",
+      "email": "cs@aiuniversity.edu",
+      "phone": "(555) 123-4001"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "head": "Dr. Michael Rodriguez",
+      "email": "ai@aiuniversity.edu",
+      "phone": "(555) 123-4002"
+    },
+    {
+      "name": "Data Science",
+      "head": "Dr. Emily Watson",
+      "email": "ds@aiuniversity.edu",
+      "phone": "(555) 123-4003"
+    }
+  ],
+  "facilities": {
+    "libraries": ["Main Library", "Science Library"],
+    "labs": ["AI Research Lab", "Data Science Lab", "Computer Lab"],
+    "sports": ["Gymnasium", "Swimming Pool", "Sports Field"],
+    "housing": ["North Dormitory", "South Dormitory", "Graduate Housing"]
+  },
+  "policies": {
+    "admission": "Open enrollment for qualified students with background in computer science or related fields.",
+    "attendance": "Minimum 80% attendance required for all courses.",
+    "academic_integrity": "Strict policies against plagiarism and academic dishonesty."
+  },
+  "contact_information": {
+    "admissions": "admissions@aiuniversity.edu",
+    "registrar": "registrar@aiuniversity.edu",
+    "financial_aid": "finaid@aiuniversity.edu",
+    "it_support": "itsupport@aiuniversity.edu"
+  }
+}
