@@ -1,0 +1,1 @@
+from ai_university_campus_admin_agent.agents.registration_agent import registeration_agent
