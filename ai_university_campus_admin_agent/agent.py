@@ -1,8 +1,8 @@
-# agent.py (Updated)
 from google.genai import types
 from google.adk.agents.llm_agent import LlmAgent
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
+from google.adk.memory import InMemoryMemoryService  # NEW: Memory service
 from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService
 from google.adk.planners import BasePlanner, BuiltInPlanner, PlanReActPlanner
 from google.adk.models import LlmRequest
@@ -11,11 +11,22 @@ from dotenv import load_dotenv
 import os
 from typing import List, Dict, Any, Optional    
 import uuid
+import asyncio  # NEW: For async operations
 
 # Import all agents
 from ai_university_campus_admin_agent.agents import *
 
 load_dotenv()
+
+# ===============================================================================
+# Memory Configuration
+# NEW: Constants for memory management
+APP_NAME = "ai_university_campus_admin"
+DEFAULT_USER_ID = "university_admin"
+
+# NEW: Initialize memory service
+memory_service = InMemoryMemoryService()
+session_service = InMemorySessionService()
 
 # ===============================================================================
 

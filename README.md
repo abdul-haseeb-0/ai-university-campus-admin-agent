@@ -1,331 +1,232 @@
-# 🎓 AI University Campus Administration System
+# AI University Campus Administration System
 
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Solution](#solution)
-- [Architecture](#architecture)
-- [Agents](#agents)
-- [Installation & Setup](#installation--setup)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+A comprehensive multi-agent university administration system built with **Google ADK** that handles student registration, course management, fee processing, analytics, and campus information through specialized AI agents.
 
-## 🎯 Overview
+## 🏫 System Overview
 
-The **AI University Campus Administration System** is a comprehensive multi-agent AI platform designed to automate and streamline university administrative operations. Built for the **Google AI Agents Intensive Capstone Project**, this system leverages multiple specialized AI agents to handle student registration, course management, financial operations, analytics, and campus information services.
+This system provides a complete AI-powered administration platform for university operations, featuring intelligent agent orchestration, database management, and specialized tools for different administrative domains.
 
-**Competition Track**: Enterprise Agents  
-**Submission**: Agents Intensive - Capstone Project
+## 🏗️ System Architecture
 
-## 🚨 Problem Statement
+### **Core Components**
 
-University administration faces significant challenges with:
-- **Fragmented Systems**: Separate systems for registration, courses, fees, and analytics
-- **Manual Processes**: Time-consuming administrative tasks and data entry
-- **Limited Insights**: Lack of real-time analytics for decision-making
-- **Poor Student Experience**: Inefficient registration and payment processes
-- **Data Silos**: Information scattered across multiple departments
+1. **Orchestration Agent** - Routes requests to appropriate specialized agents
+2. **Registration Agent** - Manages student records and course enrollments
+3. **Course Agent** - Handles course operations and scheduling
+4. **Fee Agent** - Processes financial transactions and fee management
+5. **Analyst Agent** - Provides analytics and data insights
+6. **University Information Agent** - Offers campus and course information
 
-## 💡 Solution
+### **Technology Stack**
+- **Google ADK** - Agent development framework
+- **Gemini 2.0 Flash** - LLM backbone
+- **SQLAlchemy** - Database ORM
+- **SQLite/PostgreSQL** - Database backend
+- **Python** - Backend implementation
 
-A unified **multi-agent AI system** that:
-- 🤖 **Automates administrative workflows** across all university departments
-- 📊 **Provides real-time analytics** and insights for data-driven decisions
-- 🎓 **Enhances student experience** with streamlined processes
-- 🔄 **Maintains data integrity** through coordinated agent interactions
-- 📈 **Scales efficiently** with modular agent architecture
+## 📁 Project Structure
 
-## 🏗️ Architecture
-
-### System Architecture Diagram
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    AI UNIVERSITY CAMPUS SYSTEM              │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │   Registration │  │   Course    │  │      Fee Agent     │  │
-│  │     Agent      │  │    Agent    │  │                    │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │   Analyst    │  │ University  │  │    Database Layer   │  │
-│  │    Agent     │  │ Information │  │  (SQLAlchemy ORM)   │  │
-│  └─────────────┘  │    Agent     │  └─────────────────────┘  │
-│                   └─────────────┘                           │
-└─────────────────────────────────────────────────────────────┘
+ai_university_campus_admin_agent/
+├── agent.py                          # Main orchestration agent
+├── config/
+│   └── database.py                   # Database models and configuration
+├── agents/
+│   ├── __init__.py                   # Agent exports
+│   ├── registration_agent.py         # Student registration management
+│   ├── course_agent.py               # Course operations
+│   ├── fee_agent.py                  # Financial management
+│   ├── analyst_agent.py              # Analytics and reporting
+│   └── uni_information_agent.py      # Campus information
+├── data/
+│   ├── university_information.json   # Campus data
+│   ├── course_information.json       # Course catalog
+│   └── fee_information.json          # Fee structures
+└── requirements.txt                  # Dependencies
 ```
 
-### Technology Stack
-- **AI Framework**: Google ADK (Agent Development Kit)
-- **LLM**: Gemini 2.0 Flash
-- **Database**: SQLite/PostgreSQL with SQLAlchemy ORM
-- **Backend**: Python 3.9+
-- **Session Management**: InMemorySessionService
-- **Tools**: Custom FunctionTools for database operations
+## 🚀 Quick Start
 
-## 🤖 Agents
+### **Prerequisites**
+- Python 3.8+
+- Google ADK installed
+- Gemini API access
 
-### 1. Registration Agent
-**Responsibilities**: Student lifecycle management and course enrollment
-```python
-Tools:
-- create_student: Create new student records
-- get_student: Retrieve student information
-- update_student: Update student profiles
-- delete_student: Remove student records
-- enroll_course: Course registration
-- get_student_registrations: View enrolled courses
-```
+### **Installation**
 
-### 2. Course Agent
-**Responsibilities**: Course catalog management and operations
-```python
-Tools:
-- create_course: Add new courses
-- get_course: Retrieve course details
-- get_all_courses: Browse course catalog
-- update_course: Modify course information
-- get_course_enrollments: View course rosters
-- drop_course: Remove students from courses
-```
-
-### 3. Fee Agent
-**Responsibilities**: Financial management and payment processing
-```python
-Tools:
-- create_fee_structure: Define course fees
-- get_course_fees: View fee breakdowns
-- calculate_student_fees: Calculate balances
-- record_payment: Process payments
-- get_payment_history: Payment tracking
-- get_fee_types: Available fee categories
-```
-
-### 4. Analyst Agent
-**Responsibilities**: Data analytics and reporting
-```python
-Tools:
-- get_enrollment_statistics: Enrollment analytics
-- get_student_demographics: Student population insights
-- get_financial_reports: Revenue and payment analysis
-- get_activity_report: System usage analytics
-- get_course_performance: Academic performance metrics
-```
-
-### 5. University Information Agent
-**Responsibilities**: Campus information and guidance
-```python
-Sub-agents:
-- Campus Information: Facilities, departments, policies
-- Course Information: Academic programs, schedules
-- Fee Information: Cost structures, payment guidance
-```
-
-## 🛠️ Installation & Setup
-
-### Prerequisites
-- Python 3.9 or higher
-- Google Cloud Account (for Gemini API)
-- Git
-
-### Step 1: Clone Repository
+1. **Clone and setup environment:**
 ```bash
-git clone https://github.com/your-username/ai-university-admin.git
-cd ai-university-admin
+git clone <repository>
+cd ai_university_campus_admin_agent
 ```
 
-### Step 2: Set Up Environment
+2. **Install dependencies:**
 ```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+pip install google-adk
 pip install -r requirements.txt
 ```
 
-### Step 3: Configure Environment Variables
+3. **Set up environment variables:**
 ```bash
 cp .env.example .env
-# Edit .env with your configuration
+# Edit .env with your database URL and Gemini API key
 ```
 
-**`.env` Configuration:**
+4. **Initialize database:**
+```bash
+python -c "from config.database import init_db; init_db()"
+```
+
+5. **Run the system:**
+```bash
+adk web
+```
+
+## 🎯 Agent Capabilities
+
+### **Orchestration Agent**
+- Intelligent request routing to specialized agents
+- Multi-domain request coordination
+- System-wide workflow management
+
+### **Registration Agent**
+- **Student Management**: Create, read, update, delete student records
+- **Course Enrollment**: Register students for courses with capacity checks
+- **Registration Tracking**: Monitor student course registrations
+- **Activity Logging**: Audit trail for all student operations
+
+**Tools Available:**
+- `create_student` - Register new students
+- `get_student` - Retrieve student information
+- `update_student` - Modify student records
+- `delete_student` - Remove student accounts
+- `enroll_course` - Course registration
+- `get_student_registrations` - View enrolled courses
+
+### **Course Agent**
+- **Course Catalog**: Manage course creation and updates
+- **Capacity Management**: Monitor enrollment limits
+- **Schedule Management**: Handle course timings and locations
+- **Enrollment Tracking**: Student roster management
+
+**Tools Available:**
+- `create_course` - Add new courses to catalog
+- `get_course` - Retrieve course details
+- `get_all_courses` - Browse course catalog
+- `update_course` - Modify course information
+- `get_course_enrollments` - View class rosters
+- `drop_course` - Remove students from courses
+
+### **Fee Agent**
+- **Fee Structures**: Define course-specific fee components
+- **Payment Processing**: Record and track financial transactions
+- **Balance Calculation**: Compute outstanding amounts
+- **Financial Reporting**: Payment history and revenue tracking
+
+**Tools Available:**
+- `create_fee_structure` - Define course fees
+- `get_course_fees` - View fee breakdown
+- `calculate_student_fees` - Compute student balances
+- `record_payment` - Process payments
+- `get_payment_history` - Transaction records
+- `get_fee_types` - Available fee categories
+
+### **Analyst Agent**
+- **Enrollment Analytics**: Course capacity and utilization
+- **Demographic Reports**: Student population analysis
+- **Financial Analytics**: Revenue and payment trends
+- **Performance Metrics**: Course completion and grades
+- **Activity Monitoring**: System usage statistics
+
+**Tools Available:**
+- `get_enrollment_statistics` - Course enrollment analytics
+- `get_student_demographics` - Student population insights
+- `get_financial_reports` - Revenue analysis
+- `get_activity_report` - System usage metrics
+- `get_course_performance` - Academic performance data
+
+### **University Information Agent**
+- **Campus Information**: Facilities, departments, policies
+- **Course Catalog**: Detailed course descriptions and schedules
+- **Fee Information**: Tuition structures and payment guidelines
+- **General Queries**: Campus life and administrative procedures
+
+## 💾 Database Schema
+
+The system uses a comprehensive relational database with the following main tables:
+
+- **Students** - Student personal and academic information
+- **Courses** - Course catalog and scheduling
+- **Registrations** - Student-course enrollment records
+- **FeeStructures** - Course fee definitions
+- **Payments** - Financial transaction records
+- **ActivityLogs** - System audit trail
+- **Departments** - Academic department information
+- **AcademicRecords** - Student performance history
+- **Notifications** - System communications
+---
+
+## ⚙️ Configuration
+
+### **Environment Variables**
 ```env
 DATABASE_URL=sqlite:///./university.db
-GOOGLE_API_KEY=your_gemini_api_key_here
+GOOGLE_API_KEY=your_gemini_api_key
 ```
 
-### Step 4: Initialize Database
-```bash
-python -c "from ai_university_campus_admin_agent.config.database import init_db; init_db()"
-```
+### **Database Support**
+- **SQLite** (default) - For development and testing
+- **PostgreSQL** - For production deployments
+- **MySQL** - Supported via SQLAlchemy
 
-### Step 5: Run the System
-```bash
-# Start the main application
-python main.py
-```
+## 🔧 Development
 
-## 🚀 Usage
+### **Adding New Agents**
+1. Create agent file in `agents/` directory
+2. Implement tools using `FunctionTool`
+3. Add agent to `agents/__init__.py`
+4. Register with orchestration agent in `agent.py`
 
-### Basic Agent Interaction
-```python
-from ai_university_campus_admin_agent.agents.registration_agent import registration_agent
-from google.adk.runners import Runner
+### **Database Modifications**
+1. Update models in `config/database.py`
+2. Run database migration
+3. Update relevant agent tools
 
-# Initialize agent runner
-runner = Runner(agent=registration_agent)
+## 📊 Monitoring & Analytics
 
-# Create a new student
-result = runner.run("Create a new student named John Doe with ID S12345 in Computer Science department, email john.doe@university.edu")
-print(result)
-```
+The system includes comprehensive logging and analytics:
+- Activity logging for all operations
+- Performance metrics tracking
+- Financial reporting
+- Enrollment analytics
+- System usage statistics
 
-### Example Workflows
+## 🔒 Security Features
 
-#### Student Registration Flow
-```python
-# 1. Create student
-registration_agent.run("Create student Alice Smith, ID S1001, CS department")
-
-# 2. Enroll in courses
-registration_agent.run("Enroll student S1001 in course CS101")
-
-# 3. Check fees
-fee_agent.run("Calculate fees for student S1001 in course CS101")
-
-# 4. Record payment
-fee_agent.run("Record $500 payment for student S1001 via credit card")
-```
-
-#### Administrative Analytics
-```python
-# Get enrollment statistics
-analyst_agent.run("Show enrollment statistics for Computer Science department")
-
-# Financial reports
-analyst_agent.run("Generate financial report for current semester")
-
-# Course performance
-analyst_agent.run("Show course completion rates and average grades")
-```
-
-## 📊 API Documentation
-
-### Database Models
-The system uses SQLAlchemy ORM with the following main models:
-
-#### Student
-```python
-class Student(Base):
-    student_id: str (unique)
-    name: str
-    department: str
-    email: str (unique)
-    enrollment_date: DateTime
-    is_active: bool
-```
-
-#### Course
-```python
-class Course(Base):
-    course_code: str (unique)
-    course_name: str
-    credits: int
-    department: str
-    max_capacity: int
-    current_enrollment: int
-```
-
-#### Registration
-```python
-class Registration(Base):
-    student_id: str (Foreign Key)
-    course_id: int (Foreign Key)
-    status: RegistrationStatus (ACTIVE, DROPPED, COMPLETED)
-```
-
-#### Payment
-```python
-class Payment(Base):
-    student_id: str (Foreign Key)
-    amount_paid: float
-    payment_method: str
-    transaction_id: str (unique)
-    status: PaymentStatus (PAID, PENDING)
-```
-
-## 🌐 Deployment
-
-### Local Development
-```bash
-python main.py
-```
-
-### Cloud Deployment (Google Cloud Run)
-```bash
-# Build Docker image
-docker build -t ai-university-admin .
-
-# Deploy to Cloud Run
-gcloud run deploy ai-university-admin \
-    --image gcr.io/your-project/ai-university-admin \
-    --platform managed \
-    --region us-central1 \
-    --allow-unauthenticated
-```
-
-### Docker Configuration
-```dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . .
-CMD ["python", "main.py"]
-```
-
-## 📈 Performance Metrics
-
-- **60% reduction** in administrative workload
-- **Real-time analytics** for instant decision-making
-- **Automated workflow** processing for 90% of routine tasks
-- **Unified data view** across all university departments
-- **Scalable architecture** supporting 10,000+ students
-
-## 🎓 Course Concepts Demonstrated
-
-### ✅ Multi-agent System
-- 5 specialized agents with coordinated functionality
-- Sequential and parallel agent workflows
-- Agent-to-agent communication protocols
-
-### ✅ Custom Tools
-- Multiple FunctionTools for database operations
-- SQLAlchemy integration for persistent storage
-- Custom validation and error handling
-
-### ✅ Sessions & Memory
-- InMemorySessionService for agent state management
-- Database persistence for long-term memory
-- Activity logging for audit trails
-
-### ✅ Additional Features
-- Context engineering for efficient prompting
-- Comprehensive error handling
-- Data validation and integrity checks
+- Input validation and sanitization
+- SQL injection prevention via ORM
+- Activity audit trails
+- Data integrity constraints
+- Error handling and logging
 
 ---
 
-<div align="center">
+## 🤝 Contributing
 
-**Built with ❤️ for the Google AI Agents Intensive Capstone Project**
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-*Transforming University Administration Through AI*
+## 🎓 Academic Use
 
-</div>
+This system is ideal for:
+- University administration automation
+- AI and multi-agent system research
+- Educational technology development
+- Database and system design studies
+
+---
+
+**Built with Google ADK and Gemini AI** - Transforming university administration through intelligent multi-agent systems.
