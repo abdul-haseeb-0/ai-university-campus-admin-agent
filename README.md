@@ -1,4 +1,4 @@
-# AI University Campus Administration System
+# AI University Campus Administration Agent System
 
 A comprehensive multi-agent university administration system built with **Google ADK** that handles student registration, course management, fee processing, analytics, and campus information through specialized AI agents.
 

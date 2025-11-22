@@ -16,6 +16,17 @@ import asyncio  # NEW: For async operations
 # Import all agents
 from ai_university_campus_admin_agent.agents import *
 
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+)
+
+# Your ADK agent code follows...
+# from google.adk.agents import LlmAgent
+# ...
+
 load_dotenv()
 
 # ===============================================================================
