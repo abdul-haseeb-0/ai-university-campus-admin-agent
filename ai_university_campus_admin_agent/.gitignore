@@ -1,6 +1,4 @@
 .env
-__init__.py
-_pycache__/
+# ai_university_campus_admin_agent\__pycache__
 *.pyc
-*.pyo
-
+.DS_Store
