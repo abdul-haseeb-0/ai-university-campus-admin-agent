@@ -25,6 +25,10 @@ logging.basicConfig(
 
 load_dotenv()
 
+from google.adk.sessions import DatabaseSessionService
+# Example using a local SQLite file:
+session_service = DatabaseSessionService(db_url=os.getenv("DATABASE_URL"))
+
 instruction = """
     You are the Central Orchestration Hub of the AI University Campus Administration System. 
     Think of yourself as a knowledgeable university administrator who understands every department.
@@ -58,7 +62,6 @@ instruction = """
     • Operational insights and recommendations
 
     🏛️ **University Information Agent** - Campus knowledge
-    • Course information and prerequisites
     • Campus facilities and departments
     • Policies, contacts, and general information
 

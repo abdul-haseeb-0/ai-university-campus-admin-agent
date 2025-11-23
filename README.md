@@ -1,232 +1,131 @@
-# AI University Campus Administration Agent System
-
-A comprehensive multi-agent university administration system built with **Google ADK** that handles student registration, course management, fee processing, analytics, and campus information through specialized AI agents.
-
-## 🏫 System Overview
-
-This system provides a complete AI-powered administration platform for university operations, featuring intelligent agent orchestration, database management, and specialized tools for different administrative domains.
-
-## 🏗️ System Architecture
-
-### **Core Components**
-
-1. **Orchestration Agent** - Routes requests to appropriate specialized agents
-2. **Registration Agent** - Manages student records and course enrollments
-3. **Course Agent** - Handles course operations and scheduling
-4. **Fee Agent** - Processes financial transactions and fee management
-5. **Analyst Agent** - Provides analytics and data insights
-6. **University Information Agent** - Offers campus and course information
-
-### **Technology Stack**
-- **Google ADK** - Agent development framework
-- **Gemini 2.0 Flash** - LLM backbone
-- **SQLAlchemy** - Database ORM
-- **SQLite/PostgreSQL** - Database backend
-- **Python** - Backend implementation
-
-## 📁 Project Structure
-
-```
-ai_university_campus_admin_agent/
-├── agent.py                          # Main orchestration agent
-├── config/
-│   └── database.py                   # Database models and configuration
-├── agents/
-│   ├── __init__.py                   # Agent exports
-│   ├── registration_agent.py         # Student registration management
-│   ├── course_agent.py               # Course operations
-│   ├── fee_agent.py                  # Financial management
-│   ├── analyst_agent.py              # Analytics and reporting
-│   └── uni_information_agent.py      # Campus information
-├── data/
-│   ├── university_information.json   # Campus data
-│   ├── course_information.json       # Course catalog
-│   └── fee_information.json          # Fee structures
-└── requirements.txt                  # Dependencies
-```
-
-## 🚀 Quick Start
-
-### **Prerequisites**
-- Python 3.8+
-- Google ADK installed
-- Gemini API access
-
-### **Installation**
-
-1. **Clone and setup environment:**
-```bash
-git clone <repository>
-cd ai_university_campus_admin_agent
-```
-
-2. **Install dependencies:**
-```bash
-pip install google-adk
-pip install -r requirements.txt
-```
-
-3. **Set up environment variables:**
-```bash
-cp .env.example .env
-# Edit .env with your database URL and Gemini API key
-```
-
-4. **Initialize database:**
-```bash
-python -c "from config.database import init_db; init_db()"
-```
-
-5. **Run the system:**
-```bash
-adk web
-```
-
-## 🎯 Agent Capabilities
-
-### **Orchestration Agent**
-- Intelligent request routing to specialized agents
-- Multi-domain request coordination
-- System-wide workflow management
-
-### **Registration Agent**
-- **Student Management**: Create, read, update, delete student records
-- **Course Enrollment**: Register students for courses with capacity checks
-- **Registration Tracking**: Monitor student course registrations
-- **Activity Logging**: Audit trail for all student operations
-
-**Tools Available:**
-- `create_student` - Register new students
-- `get_student` - Retrieve student information
-- `update_student` - Modify student records
-- `delete_student` - Remove student accounts
-- `enroll_course` - Course registration
-- `get_student_registrations` - View enrolled courses
-
-### **Course Agent**
-- **Course Catalog**: Manage course creation and updates
-- **Capacity Management**: Monitor enrollment limits
-- **Schedule Management**: Handle course timings and locations
-- **Enrollment Tracking**: Student roster management
-
-**Tools Available:**
-- `create_course` - Add new courses to catalog
-- `get_course` - Retrieve course details
-- `get_all_courses` - Browse course catalog
-- `update_course` - Modify course information
-- `get_course_enrollments` - View class rosters
-- `drop_course` - Remove students from courses
-
-### **Fee Agent**
-- **Fee Structures**: Define course-specific fee components
-- **Payment Processing**: Record and track financial transactions
-- **Balance Calculation**: Compute outstanding amounts
-- **Financial Reporting**: Payment history and revenue tracking
-
-**Tools Available:**
-- `create_fee_structure` - Define course fees
-- `get_course_fees` - View fee breakdown
-- `calculate_student_fees` - Compute student balances
-- `record_payment` - Process payments
-- `get_payment_history` - Transaction records
-- `get_fee_types` - Available fee categories
-
-### **Analyst Agent**
-- **Enrollment Analytics**: Course capacity and utilization
-- **Demographic Reports**: Student population analysis
-- **Financial Analytics**: Revenue and payment trends
-- **Performance Metrics**: Course completion and grades
-- **Activity Monitoring**: System usage statistics
-
-**Tools Available:**
-- `get_enrollment_statistics` - Course enrollment analytics
-- `get_student_demographics` - Student population insights
-- `get_financial_reports` - Revenue analysis
-- `get_activity_report` - System usage metrics
-- `get_course_performance` - Academic performance data
-
-### **University Information Agent**
-- **Campus Information**: Facilities, departments, policies
-- **Course Catalog**: Detailed course descriptions and schedules
-- **Fee Information**: Tuition structures and payment guidelines
-- **General Queries**: Campus life and administrative procedures
-
-## 💾 Database Schema
-
-The system uses a comprehensive relational database with the following main tables:
-
-- **Students** - Student personal and academic information
-- **Courses** - Course catalog and scheduling
-- **Registrations** - Student-course enrollment records
-- **FeeStructures** - Course fee definitions
-- **Payments** - Financial transaction records
-- **ActivityLogs** - System audit trail
-- **Departments** - Academic department information
-- **AcademicRecords** - Student performance history
-- **Notifications** - System communications
+# **AI University Campus Admin Agent**
+- **Location**: `ai_university_campus_admin_agent`
+- **Purpose**: A modular, agent-based system that automates common university administrative tasks (registration, course management, fees, analytics, and campus information) using Google ADK (Agents Developer Kit) and an SQL database backend.
 ---
+### **Features**
+- **Multi-agent orchestration**: Central orchestration agent routes user requests to specialized agents.
+- **Specialized agents**: Registration, Course, Fee, Analyst, and University Information agents handle domain-specific tasks.
+- **Custom tool based actions**: Each agent uses FunctionTools wrapping CRUD and reporting helpers (in `ai_university_campus_admin_agent/tools`).
+- **Persistent storage**: SQLAlchemy models in `ai_university_campus_admin_agent/config/database.py` provide a full schema (students, courses, registrations, payments, fee structures, logs).
+- **Data-driven campus info**: `ai_university_campus_admin_agent/data/university_information.json` contains campus contacts, departments, and facilities consumed by the University Information agent.
+- **Google ADK integration**: Uses `google.adk` and `google.genai` components (see `agent.py`) to create LLM-driven agents.
+---
+### **Repository Layout (key files)**
+- **`agent.py`**: Central orchestration agent setup and instructions for the root LLM agent (the orchestrator).
+- **`agents/`**: Specialized agents, each built as an `LlmAgent` or `Agent`:
+  - `registration_agent.py` — student lifecycle, enrollment, profile management.
+  - `course_agent.py` — course CRUD, enrollments, drop operations.
+  - `fee_agent.py` — fee structures, payment recording, queries.
+  - `analyst_agent.py` — analytics, reports and data insights.
+  - `uni_information_agent.py` — campus information provider (reads `data/university_information.json`).
+- **`tools/`**: Helper functions used as `FunctionTool` callables by agents (e.g., `create_student`, `enroll_course`, `get_enrollment_statistics`).
+- **`config/database.py`**: SQLAlchemy models and `get_db()` / `init_db()` utilities.
+- **`data/university_information.json`**: Campus metadata used by the information agent.
+- **`requirements.txt`**: Python dependencies (FastAPI, SQLAlchemy, python-dotenv, etc.).
+---
+### **How It Works**
+- **User request**: A user or calling application sends a natural-language request.
+- **Orchestration**: The `root_agent` (in `agent.py`) analyzes intent and chooses which specialized agent(s) to call.
+- **Tools invocation**: The selected agents call `FunctionTool` wrappers implemented in `tools/*` to access the database or compute results.
+- **Database**: `config/database.py` exposes ORM models (Students, Courses, Registrations, Payments, FeeStructures, ActivityLog, etc.) and `get_db()` for sessions.
+- **Response aggregation**: If a request involves multiple domains (e.g., pay fees and register for a course), the orchestrator coordinates multiple agents and merges results into a single conversational reply.
+---
+### **Design & Orchestration Diagram**
+```mermaid
+graph TD
+  U[User / Client]
+  subgraph Orchestrator
+    O[root_agent - LLM Orchestration]
+  end
+  subgraph Agents
+    R[Registration Agent]
+    C[Course Agent]
+    F[Fee Agent]
+    A[Analyst Agent]
+    UInf[University Info Agent]
+  end
+  subgraph Tools
+    TTools[Function Tools]
+  end
+  subgraph Persistence
+    DB[(SQL Database)]
+    JSON[university_information.json]
+  end
 
-## ⚙️ Configuration
+  U --> O
+  O --> R
+  O --> C
+  O --> F
+  O --> A
+  O --> UInf
+  R --> TTools
+  C --> TTools
+  F --> TTools
+  A --> TTools
+  TTools --> DB
+  UInf --> JSON
+  A --> DB
+  F --> DB
+  C --> DB
+  R --> DB
+```
+---
+### **Request Flow**
+```mermaid
+sequenceDiagram
+  participant User
+  participant Orchestrator
+  participant Agent
+  participant Tools
+  participant DB
 
-### **Environment Variables**
-```env
-DATABASE_URL=sqlite:///./university.db
-GOOGLE_API_KEY=your_gemini_api_key
+  User->>Orchestrator: "Register me for CS101 and show fees"
+  Orchestrator->>Agent: "RegistrationAgent: check eligibility & enroll"
+  Agent->>Tools: enroll_course(student_id, course_code)
+  Tools->>DB: create registration, increment enrollment
+  DB-->>Tools: success
+  Tools-->>Agent: enrollment result
+  Orchestrator->>Agent: "FeeAgent: calculate fees"
+  FeeAgent->>Tools: calculate_student_fees(student_id, course_code)
+  Tools->>DB: query fees & payments
+  DB-->>Tools: fee breakdown
+  Tools-->>FeeAgent: fee summary
+  Agent-->>Orchestrator: enrollment + fees aggregated
+  Orchestrator-->>User: combined response
+```
+---
+### **Agents & Responsibilities**
+- **Registration Agent (`agents/registration_agent.py`)**: Create/update/delete students; enroll/drop students; returns registration objects. Uses tools: `create_student`, `enroll_course`, `get_student_registrations`, etc.
+- **Course Agent (`agents/course_agent.py`)**: Course lifecycle: create, read, update, list, drop. Uses tools: `create_course`, `get_course`, `get_all_courses`, `update_course`.
+- **Fee Agent (`agents/fee_agent.py`)**: Create fee structures, calculate dues, record payments, get history. Tools include `create_fee_structure`, `calculate_student_fees`, `record_payment`, `get_payment_history`.
+- **Analyst Agent (`agents/analyst_agent.py`)**: Reporting and analytics endpoints (enrollment stats, financial reports, activity reports, course performance). Tools aggregate DB queries and return JSON reports.
+- **University Information Agent (`agents/uni_information_agent.py`)**: Reads `data/university_information.json` and answers campus-related queries.
+---
+### **Database & Models**
+- **Models**: `Student`, `Course`, `Registration`, `Payment`, `FeeStructure`, `ActivityLog`, `Department`, `AcademicRecord`, `Notification`.
+- **Enums** used: `ActivityType`, `RegistrationStatus`, `FeeType`, `PaymentStatus`.
+- **Session**: `get_db()` yields SQLAlchemy sessions. Run `init_db()` to create tables.
+---
+### **Google ADK Integration**
+- The project uses `google.adk` and `google.genai` components (see `agent.py`) to create `LlmAgent` instances and `FunctionTool` wrappers. See the ADK docs: https://google.github.io/adk-docs/
+- `agent.py` constructs `root_agent` with `sub_agents` set to the specialized agents. The orchestration instruction prompt is defined there.
+---
+### **Setup & Running (Development)**
+- **Prerequisites**: Python 3.10+, virtualenv, Google ADK credentials/config (per ADK docs), and an SQL database (SQLite, Postgres, etc.).
+- **Install dependencies (PowerShell)**
+```powershell
+pip install -r "ai_university_campus_admin_agent\requirements.txt"
+``` 
+- **Environment variables** (use a `.env` file in the project root):
+  - `DATABASE_URL` — e.g. `sqlite:///ai_university_campus_admin_agent/database/university.db` or a Postgres DSN.
+  - ADK / Google GenAI credentials (follow ADK docs for required env vars / auth).
+
+- **Initialize database**
+```powershell
+python ai_university_campus_admin_agent\config\database.py
 ```
 
-### **Database Support**
-- **SQLite** (default) - For development and testing
-- **PostgreSQL** - For production deployments
-- **MySQL** - Supported via SQLAlchemy
-
-## 🔧 Development
-
-### **Adding New Agents**
-1. Create agent file in `agents/` directory
-2. Implement tools using `FunctionTool`
-3. Add agent to `agents/__init__.py`
-4. Register with orchestration agent in `agent.py`
-
-### **Database Modifications**
-1. Update models in `config/database.py`
-2. Run database migration
-3. Update relevant agent tools
-
-## 📊 Monitoring & Analytics
-
-The system includes comprehensive logging and analytics:
-- Activity logging for all operations
-- Performance metrics tracking
-- Financial reporting
-- Enrollment analytics
-- System usage statistics
-
-## 🔒 Security Features
-
-- Input validation and sanitization
-- SQL injection prevention via ORM
-- Activity audit trails
-- Data integrity constraints
-- Error handling and logging
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 🎓 Academic Use
-
-This system is ideal for:
-- University administration automation
-- AI and multi-agent system research
-- Educational technology development
-- Database and system design studies
-
----
-
-**Built with Google ADK and Gemini AI** - Transforming university administration through intelligent multi-agent systems.
+- **Run a quick orchestrator test (example script)**
+```python
+adk run
+```
