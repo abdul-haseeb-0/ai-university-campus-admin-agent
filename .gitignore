@@ -1,0 +1,96 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# SQLite / database files
+*.db
+*.sqlite
+*.sqlite3
+d:/AI & DS/gen-ai-and-ds/SMIT_Assignments/ai-university-campus-admin-agent-capstone/ai_university_campus_admin_agent/database/
+ai_university_campus_admin_agent/database/
+
+# dotenv
+.env
+.env.*
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints
+
+# pytest cache
+.pytest_cache/
+
+# Python egg
+*.egg
+
+# build artifacts
+build/
+dist/
+
+# Node
+node_modules/
+
+# Coverage and profiling
+coverage/
+coverage.*
+
+# Misc
+*.swp
+*~
